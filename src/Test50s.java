@@ -54,12 +54,16 @@ public class Test50s {
     public static void isPrime_number() {
         List<Integer> list = new ArrayList<>();
         int count = 0;
+
         for (int i = 101; i <= 200; i++) {
-            for (int j = 2; j < i; j++) {
+            int j = 2;
+            for (; j < i; j++) {
                 if (i % j == 0) {
                     break;
                 }
                 //符合条件的，如何把整个循环走完，再计数和添加呢？？？？
+            }
+            if(j==i){
                 count++;
                 list.add(i);
             }
@@ -99,6 +103,14 @@ public class Test50s {
         System.out.println(list);
         //todo
         // 怎么拼接起来呢，用*号
+
+        for(int j=0;j<list.size();j++) {
+            if (j == list.size() - 1) {
+                System.out.print(list.get(j));
+            } else {
+                System.out.print(list.get(j) + "*");
+            }
+        }
     }
 
     // TODO: 17/7/12    5.  利用条件运算符的嵌套来完成此题：学习成绩>=90分的同学用A表示，60-89分之间的用B表示，60分以下的用C表示。
@@ -155,7 +167,32 @@ public class Test50s {
     // TODO: 17/7/12    7. 输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数
     //怎么比较呢，如何区分是字母和数字或其他的字符呢？
     //某一个字符是否在一个数组里面：1.如何生成一个有序的数组 2.该字符是否在该数组里面，怎么做判断？
+    public static void countOfChar(String text) {
+        int result = 0;
+        int countOfDigit = 0;
+        int countOfAlpha = 0;
+        int countOfSpace = 0;
+        int countOfOther = 0;
 
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            //'0':unicode value
+            if(c >='0'&& c <= '9'){
+                countOfDigit++;
+            }else if((c >= 'a' && c <= 'z')||(c >= 'A' && c <= 'Z')){
+                countOfAlpha ++;
+            }else if(c == ' '){
+                countOfSpace++;
+            }else{
+                countOfOther++;
+            }
+        }
+        System.out.println(countOfDigit);
+        System.out.println(countOfAlpha);
+        System.out.println(countOfSpace);
+        System.out.println(countOfOther);
+
+    }
 
     // TODO: 17/7/12   8.  求s=a+aa+aaa+aaaa+aa...a的值，其中a是一个数字。例如2+22+222+2222+22222(此时共有5个数相加)
     public static int sum(int a, int num) {
